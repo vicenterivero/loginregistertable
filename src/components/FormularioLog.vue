@@ -96,7 +96,7 @@ const goToRegister = () => {
   }
 }
 .form-submit {
-  background: #1ab188;
+  background: #a9b11a;
   border: none;
   color: white;
   margin-top: 3rem;

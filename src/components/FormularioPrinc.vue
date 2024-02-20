@@ -39,13 +39,13 @@
   import { useRouter } from 'vue-router';
   
   const user = ref(null);
-  const dulces = ref(JSON.parse(localStorage.getItem('dulces')) || []);
+  const dulces = ref([{}]);
   
   const router = useRouter();
   
   const logout = () => {
     user.value = null;
-    localStorage.removeItem('user');
+    dulces.value= [{}];
     router.push('/');
   }
   
@@ -53,7 +53,7 @@
   
   const addDulce = () => {
     dulces.value.push({ ...nuevoDulce.value });
-    localStorage.setItem('dulces', JSON.stringify(dulces.value));
+    dulces.value.push('dulces', JSON.stringify(dulces.value));
     nuevoDulce.value = { nombre: '', cantidad: 0 };
   }
   
@@ -62,13 +62,13 @@
     if (nuevoNombre !== null) {
       const nuevaCantidad = parseInt(prompt('Ingrese la nueva cantidad del dulce:', dulces.value[index].cantidad.toString()) || '0');
       dulces.value[index] = { nombre: nuevoNombre, cantidad: nuevaCantidad };
-      localStorage.setItem('dulces', JSON.stringify(dulces.value));
+      dulces.value.push('dulces', JSON.stringify(dulces.value));
     }
   }
   
   const deleteDulce = (index: number) => {
     dulces.value.splice(index, 1);
-    localStorage.setItem('dulces', JSON.stringify(dulces.value));
+    dulces.value.push('dulces', JSON.stringify(dulces.value));
   }
   </script>
   
@@ -113,7 +113,7 @@
   }
 }
 .form-submit {
-  background: #1ab188;
+  background: #9ab11a;
   border: none;
   color: white;
   margin-top: 3rem;
@@ -125,7 +125,7 @@
   }
 }
 .form-logout {
-  background: #1ab188;
+  background: #9db11a;
   border: none;
   color: white;
   margin-top: 3rem;
